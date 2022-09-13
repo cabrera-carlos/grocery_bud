@@ -40,20 +40,24 @@ function App() {
   };
 
   return (
-    <>
-      <div>
-        <h1>grocery bud</h1>
-        <form onSubmit={handleSubmit}>
+    <section className="section-center">
+      <form className="grocery-form" onSubmit={handleSubmit}>
+        <h3>grocery bud</h3>
+        <div className="form-control">
           <input
             type="text"
             name="item"
+            className="grocery"
+            placeholder="e.g. bacon"
             value={item}
             onChange={(e) => setItem(e.target.value)}
           />
-          <button type="submit">submit</button>
-        </form>
-      </div>
-      <div>
+          <button type="submit" className="submit-btn">
+            {itemIndex === groceryList.length ? "submit" : "edit"}
+          </button>
+        </div>
+      </form>
+      <div className="grocery-container">
         {groceryList.map((item, index) => {
           return (
             <div key={index}>
@@ -63,9 +67,13 @@ function App() {
             </div>
           );
         })}
-        <div>{groceryList.length > 0 && <button>clear items</button>}</div>
+        <div>
+          {groceryList.length > 0 && (
+            <button className="clear-btn">clear items</button>
+          )}
+        </div>
       </div>
-    </>
+    </section>
   );
 }
 
