@@ -1,4 +1,5 @@
 import { useState } from "react";
+import GroceryList from "./GroceryList";
 
 function App() {
   const [groceryList, setGroceryList] = useState([]);
@@ -57,22 +58,16 @@ function App() {
           </button>
         </div>
       </form>
-      <div className="grocery-container">
-        {groceryList.map((item, index) => {
-          return (
-            <div key={index}>
-              <p>{item}</p>
-              <button onClick={() => updateItem(index)}>edit</button>
-              <button onClick={() => deleteItem(index)}>delete</button>
-            </div>
-          );
-        })}
-        <div>
-          {groceryList.length > 0 && (
-            <button className="clear-btn">clear items</button>
-          )}
+      {groceryList.length > 0 && (
+        <div className="grocery-container">
+          <GroceryList
+            list={groceryList}
+            updateItem={updateItem}
+            deleteItem={deleteItem}
+          />
+          <button className="clear-btn">clear items</button>
         </div>
-      </div>
+      )}
     </section>
   );
 }
